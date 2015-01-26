@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/foundation.min.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/icon/foundation-icons.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}"/>
+    <script src="{% static "js/foundation.min.js" %}"></script>
+    <script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+</head>
+<body>
+{% if username %}
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">My Site</a></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="/auth/logout/">LogOut {{ username }}</a></li>
+          <!--<li class="has-dropdown">
+            <a href="#">Right Button Dropdown</a>
+            <ul class="dropdown">
+              <li><a href="#">First link in dropdown</a></li>
+              <li class="active"><a href="#">Active link in dropdown</a></li>
+            </ul>
+          </li> -->
+        </ul>
+      </section>
+    </nav>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="row">
+          <div class="large-12 columns">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            {% block all_category %}{% endblock %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            {% block head_form %}{% endblock %}
+            {% block head_form_c %}{% endblock %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+                {% block head %}{% endblock %}
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-8 columns">
+          {% block body_text_form_h %}{% endblock %}
+            <ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
+                {% block body_h %}{% endblock %}
+            </ul>
+          </div>
+          <div class="large-4 columns">
+          {% block head_form_h %}{% endblock %}
+          {% block head_h %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% else %}
+    {% block login %}{% endblock %}
+    {% block register %}{% endblock %}
+{% endif %}
+</body>
+</html>

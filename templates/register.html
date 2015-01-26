@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block register %}
+<div class="center row">
+  <div class="section-container tabs" data-section="tabs">
+    <section>
+      <p class="title" data-section-title><a href="/">Sign In</a></p>
+      <div class="content" data-section-content>
+        <p>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="signup-panel">
+                <p class="welcome">Hello, new user!</p>
+                <form action="/auth/register/" method="post">
+                  {% csrf_token %}
+                  <div class="row collapse">
+                    <div class="small-2  columns">
+                      <span class="prefix"><i class="fi-torso"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+                      {{ form.username }}
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2 columns">
+                      <span class="prefix"><i class="fi-lock"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+                      {{ form.password1 }}
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2 columns ">
+                      <span class="prefix"><i class="fi-lock"></i></span>
+                    </div>
+                    <div class="small-10 columns ">
+                      {{ form.password2 }}
+                    </div>
+                  </div>
+                  <input class="button" type="submit" value="Sing Up!"/>
+                </form>
+
+              </div>
+            </div>
+           </div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

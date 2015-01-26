@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+{% block login %}
+<div class="center row">
+  <div class="section-container tabs" data-section="tabs">
+    <section>
+      <p class="title" data-section-title><a href="/auth/register/">Sign Up</a></p>
+      <div class="content" data-section-content>
+        <p>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="signup-panel">
+                <p class="welcome">Welcome back!</p>
+                <form action="/auth/login/" method="post">
+                  {% csrf_token %}
+                  <div class="row collapse">
+                    <div class="small-2 columns">
+                      <span class="prefix"><i class="fi-torso"></i></span>
+                    </div>
+                    <div class="small-10  columns">
+                      <input type="text" name="username" id="username" placeholder="Login">
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-2 columns ">
+                      <span class="prefix"><i class="fi-lock"></i></span>
+                    </div>
+                    <div class="small-10 columns ">
+                      <input type="password" name="password" id="password"  placeholder="Password">
+                    </div>
+                  </div>
+                  <input class="button" type="submit" value="Sign In!"/>
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}
+
+{% block all_category %}
+    <div class="icon-bar five-up">
+    {% for category in all_category %}
+        <a class="item" href="/content/category/{{ category.id }}/">{{ category.category_title }}</a>
+    {% endfor %}
+    </div>
+{% endblock %}}
+
+{% block head %}
+    {% for head in head %}
+           <li><p class="panel"><a href="/content/category/head/{{ head.id }}/">{{ head.head_title }}</a></p></li>
+    {% endfor %}
+{% endblock %}
+
+{% block head_form %}
+    <form action="/add/add_head/" method="post">
+    {% csrf_token %}
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="row collapse">
+            <div class="small-7 large-9 columns">
+              {{ head_form.head_title }}
+            </div>
+            <div class="small-2 large-1 columns">
+              {{ head_form.head_category }}
+            </div>
+            <div class="small-3 large-2 columns">
+              <input class="button postfix" type="submit" value="Add">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+{% endblock %}

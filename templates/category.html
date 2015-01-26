@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% block all_category %}
+    <div class="icon-bar five-up">
+    {% for category in all_category %}
+        <a class="item" href="/content/category/{{ category.id }}/">{{ category.category_title }}</a>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+{% block head %}
+    {% for head in heads %}
+           <li><p class="panel"><a href="/content/category/head/{{ head.id }}/">{{ head.head_title }}</a></p></li>
+    {% endfor %}
+{% endblock %}
+
+{% block head_form_c %}
+    <form action="/add/add_head_c/{{ category.id }}/" method="post">
+    {% csrf_token %}
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="row collapse">
+            <div class="row collapse">
+            <div class="small-8 large-9 columns">
+              {{ head_form.head_title }}
+            </div>
+            <div class="small-4 large-3 columns">
+              <input class="button postfix" type="submit" value="Add">
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+     </form>
+{% endblock %}

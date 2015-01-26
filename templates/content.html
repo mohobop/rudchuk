@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block all_category %}
+    {% for category in all_category %}
+        <li><p class="panel"><a href="/content/category/{{ category.id }}/">{{ category.category_title }}</a></p></li>
+    {% endfor %}
+{% endblock %}
+
+{% block head %}
+    {% for head in heads %}
+           <li><p class="panel"><a href="/content/category/head/{{ head.id }}/">{{ head.head_title }}</a></p></li>
+    {% endfor %}
+{% endblock %}
+
+{% block bodys %}
+    {{ head.head_title }}
+    {% for body in bodys %}
+           <li><p class="panel">{{ body.body_text }}</p></li>
+    {% endfor %}
+{% endblock %}
+
+{% block head_form %}
+    <form action="/add/add_head/" method="post">
+    {% csrf_token %}
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="row collapse">
+            <div class="small-7 large-9 columns">
+              {{ head_form.head_title }}
+            </div>
+            <div class="small-2 large-1 columns">
+              {{ head_form.head_category }}
+            </div>
+            <div class="small-3 large-2 columns">
+              <input class="button postfix" type="submit" value="Add">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+{% endblock %}
+
+{% block body_text_form %}
+    <form action="/add/add_body_text/{{ head.id }}/" method="post">
+    {% csrf_token %}
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="row collapse">
+            <div class="small-9 large-10 columns">
+              {{ body_text_form.body_text }}
+            </div>
+            <div class="small-3 large-2 columns">
+              <input class="button postfix" type="submit" value="Add">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+{% endblock %}
